@@ -1,5 +1,5 @@
 ---
-title: "Sangbeom Seo lllllllllllll"
+title: "Sangbeom Seo 안녕하세요"
 <!-- image: "Sangbeom.jpg" -->
 links:
   - label: LinkedIn
