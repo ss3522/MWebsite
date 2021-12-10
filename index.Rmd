@@ -1,6 +1,6 @@
 ---
 title: "Sangbeom Seo"
-image: "Sangbeom.jpg"
+<!-- image: "Sangbeom.jpg" -->
 links:
   - label: LinkedIn
     url: "https://www.linkedin.com/in/sangbeom-seo-682ba0224/"
