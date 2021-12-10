@@ -1,7 +1,7 @@
 ---
 title: "SVM and Bagging & RF"
 description: |
-  Support Vector Machine and Bagging and Random Forest Exercise 
+  Support Vector Machine, Bagging and Random Forest Exercise 
 output:
   distill::distill_article:
     toc: true

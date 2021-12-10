@@ -1,8 +1,7 @@
 ---
 title: "Sangbeom Seo"
-image: "Sangbeom.jpg"
 description: |
-  I am from Daegu, South Korea. I like soccer and music and love to talk about them.
+  I am from Daegu, South Korea. I like soccer and music and love to talk about them. My favorite sports team is Liverpool FC and Daegu FC!
 ---
 
 ```{r setup, include=FALSE}

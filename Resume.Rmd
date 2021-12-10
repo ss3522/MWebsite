@@ -9,8 +9,6 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-------------------------------------------------------------------------
-
 ## EDUCATION
 
 ### Mississippi State University, Starkville, MS
