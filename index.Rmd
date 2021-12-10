@@ -1,6 +1,6 @@
 ---
 title: "Sangbeom Seo"
-<!-- image: "Sangbeom.jpg" -->
+<!-- image: "MWebsite/images/Sangbeom.JPG" -->
 image: ![Sangbeom](Sangbeom.JPG)
 links:
   - label: LinkedIn
