@@ -1,0 +1,55 @@
+---
+title: "Sangbeom Seo"
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+------------------------------------------------------------------------
+
+## EDUCATION
+
+### Mississippi State University, Starkville, MS
+
+College of Business - Bachelor of Business Administration (January 2015 - May 2020)
+
+Ricard C. Adkerson School of Accountancy - Master of Professional Accounting
+
+## CAREER
+
+### REPUBLIC OF KOREA AIRFORCE
+
+-   Enlisted Soldier (September 2015 - September 2017)
+
+### KOREAN STUDENT ASSOCIATION
+
+-   Treasurer (December 2019 - May 2021)
+
+-   President (August 2021)
+
+## ACADEMIC INTERESTS
+
+-   Financial Accounting
+
+-   Audit
+
+-   Accounting Data Analytics
+
+## RELATED SKILLS
+
+-   Learned Basic Codes of R, JAVA
+-   Fluent in Microsoft Word, Powerpoint, Excel
+-   Language; English, Korean
+
+## CONTACT
+
+662-312-6933
+
+ss3522\@msstate.edu
+
+
+

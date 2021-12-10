@@ -1,0 +1,124 @@
+---
+title: "SVM and Bagging & RF"
+description: |
+  Support Vector Machine and Bagging and Random Forest Exercise 
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    code_folding: true
+---
+
+# Exercise 1 (Bootstrap)
+## 1. Redo the bootstrap analysis, but use 10 samples. Change times = 100 to times = 10. How does the population estimate for mean change?
+###     - The population estimate does not change after changing the number of samples. 
+```{r}
+library(curl)
+load(curl("https://raw.githubusercontent.com/Professor-Hunt/ACC8143/main/data/tips.rda"))
+
+set.seed(0)
+library(rsample)
+library(tidyverse)
+
+#perform bootstrapping with 2000 replications
+resample2 <- bootstraps(as.data.frame(tips$size), times = 10)
+
+#mean
+mean(resample2$splits[[1]]$data$`tips$size`)
+#standard deviation
+sd(resample2$splits[[1]]$data$`tips$size`)
+```
+
+## 2. Redo the bootstrap analysis, but find the median. What is the difference in population estimate for the median vs mean?
+###     - Population estimate for median and mean is different. Median is 2 while mean is 2.569672. 
+```{r}
+resample1 <- bootstraps(as.data.frame(tips$size), times = 100)
+median(resample1$splits[[1]]$data$`tips$size`)
+mean(resample1$splits[[1]]$data$`tips$size`)
+```
+# Exercise 1 (SVM)
+## 1. Change the training to testing split size, for example change from a 60%:40% to a 75%:25%, and to a 50%:50%. Compare the results to the 60/40.
+###     - Compared to the resuls to the 60:40, accuracy and kappa were bigger when testing size was 75:25 and 50:50. Also, they were biggest when the size of testing sample was 50%. 
+```{r}
+library(caret)
+library(tidyverse)
+#set the seed :)
+set.seed(1)
+trainIndex <- createDataPartition(iris$Species, p = .75, list = FALSE, times = 1)
+
+#grab the data
+SVMTrain <- iris[ trainIndex,]
+SVMTest  <- iris[-trainIndex,]
+
+iris_SVM <- train(
+  form = factor(Species) ~ .,
+  data = SVMTrain,
+  #here we add classProbs because we want probs
+  trControl = trainControl(method = "cv", number = 10,
+                           classProbs =  TRUE),
+  method = "svmLinear",
+  preProcess = c("center", "scale"),
+  tuneLength = 10)
+
+iris_SVM
+```
+
+```{r}
+
+trainIndex50 <- createDataPartition(iris$Species, p = .5, list = FALSE, times = 1)
+
+#look at the first few
+#head(trainIndex)
+
+#grab the data
+SVMTrain50 <- iris[ trainIndex50,]
+SVMTest50  <- iris[-trainIndex50,]
+
+
+iris_SVM50 <- train(
+  form = factor(Species) ~ .,
+  data = SVMTrain50,
+  #here we add classProbs because we want probs
+  trControl = trainControl(method = "cv", number = 10,
+                           classProbs =  TRUE),
+  method = "svmLinear",
+  preProcess = c("center", "scale"),
+  tuneLength = 10)
+
+iris_SVM50
+```
+
+## 2. Change the Kernel…use svmPoly for the method. method = "svmLinear", to method = "svmPoly", compare the linear results with the polynomial results.
+```{r}
+set.seed(1)
+#get our samples
+#using the iris data
+#lets split the data 60/40
+
+trainIndex22 <- createDataPartition(iris$Species, p = .6, list = FALSE, times = 1)
+
+#look at the first few
+#head(trainIndex)
+
+#grab the datas
+SVMTrain22 <- iris[ trainIndex22,]
+SVMTest22  <- iris[-trainIndex22,]
+
+
+iris_SVM22 <- train(
+  form = factor(Species) ~ .,
+  data = SVMTrain22,
+  #here we add classProbs because we want probs
+  trControl = trainControl(method = "cv", number = 10,
+                           classProbs =  TRUE),
+  method = "svmPoly",
+  preProcess = c("center", "scale"),
+  tuneLength = 10)
+
+iris_SVM22
+```
+
+
+
+
+

@@ -1,0 +1,13 @@
+---
+title: "ACC8143 Final Project"
+description: |
+  Final project for 2021 Fall ACC8143
+navbar:
+  
+  - text: Machine Learning Example
+    href: "SVMandBootstrap.html"
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
