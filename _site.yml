@@ -19,7 +19,7 @@ navbar:
         - text: "Machine Learning"
           href: SVMandBootstrap.html
         - text: "Final Project"
-          href: "Final-project.html"
+          href: Final-project.html
      
 output: distill::distill_article
 theme: postcards.css
