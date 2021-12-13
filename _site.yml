@@ -3,6 +3,7 @@ title: "Sangbeom"
 description: |
   My Website
 output_dir: "docs"
+base_url: "https://github.com/ss3522/MWebsite"
 navbar:
   right:
     - text: "Home"
