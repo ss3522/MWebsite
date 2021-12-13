@@ -3,7 +3,7 @@ title: "Rsquared Bad?"
 description: |
   Thank you Dr. Hunt!
 output: 
-    html_document: default
+    distill::distill_article:
 ---
 
 # Time to blow RSquared up
