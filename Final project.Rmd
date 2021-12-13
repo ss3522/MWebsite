@@ -1,0 +1,53 @@
+---
+title: "K-Nearest Neighbor Final Project"
+author: "Sangbeom Seo"
+description: |
+  Final project using K-Nearest Neighbor and codes from Dr. Hunt's class
+output:
+  distill::distill_article 
+---
+
+```{r setup, echo=FALSE, }
+library(curl)
+Data <- read.csv("C:/Users/서정목/Desktop/MWebsite/docs/data.csv")
+library(caret)
+library(tidyverse)
+```
+
+# Final Project using Random Forest
+
+#### First of all, the purpose of this project is to estimate the indication of bankruptcy. The dataset I've found is about the financial information of companies in Taiwan from 1999 to 2009. And it was used as a data source of the paper of Liang, Lu and Tsai published in 2016[^1].The dataset was downloaded from Kaggle[^2], the website introduced by Dr. Hunt. In the dataset, whether the company went bankruptcy is shown-1 means the company went bankrupt and 0 means it did not. And I am going to see if we can estimate whether a company is bankrupt using 2 variables only. 
+
+[^1]: "<https://www.sciencedirect.com/science/article/pii/S0377221716000412?casa_token=VHeJRHo1CFwAAAAA:0ffuvQu40cACg550KqSFtorwtoXs2ptRIFJLzCBr4Q0Bz5u67i0yltD4UmCkgaVwjYhk9QZACg>"
+
+[^2]: "<https://www.kaggle.com/fedesoriano/company-bankruptcy-prediction>"
+
+#### I selected two variables from the dataset-Borrowing dependency and debt ratio.
+```{r}
+Data2 <- Data %>% select(Bankrupt., Borrowing.dependency, Debt.ratio..)
+```
+#### Unfortunately, I failed to find if borrowing tendency and debt ratio only contribute to predicting a company's bankruptcy. The graph below shows that whether a company goes bankruptcy does not have something to do with two variables, instead, the result is random.
+``` {r}
+set.seed(1)
+indxTrain <- createDataPartition(y = Data2[, names(Data2) == "Bankrupt."], p = 0.7, list = F)
+
+train <- Data2[indxTrain,]
+test <- Data2[-indxTrain,]
+
+train1<-train%>%
+  filter(Bankrupt.=="1")%>% 
+  sample_n(50)
+  
+train2<-train%>%
+  filter(Bankrupt.=="0")%>% 
+  sample_n(50)
+  
+graph_train<-rbind(train1,train2)
+
+graph_test<-test%>%sample_n(1)
+  
+ggplot(data=graph_train,mapping = aes(x=Debt.ratio..,y=Borrowing.dependency,color=Bankrupt.))+geom_point(alpha=0.5) + 
+   geom_point(data=graph_test, color="darkred", size=4) + theme(legend.title = element_blank())+ggtitle("Property that Bankrupt Companies have")+xlim(0,0.3)+ylim(0,0.75)+
+  theme(plot.title = element_text(hjust=0.5, size=10, face='bold'))  
+```
+
