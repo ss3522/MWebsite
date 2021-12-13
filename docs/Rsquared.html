@@ -109,7 +109,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Rsquared Bad?"]},{"type":"character","attributes":{},"value":["Thank you Dr. Hunt!\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","code_folding"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[true]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Rsquared Bad?"]},{"type":"character","attributes":{},"value":["Thank you Dr. Hunt!\n"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2404,7 +2404,7 @@ Project
 <div class="nav-dropdown-content">
 <a href="Rsquared.html">R-Squared</a>
 <a href="SVMandBootstrap.html">Machine Learning</a>
-<a href="">Final Project</a>
+<a href="Final-project.html">Final Project</a>
 </div>
 </div>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
@@ -2424,22 +2424,10 @@ Project
 
 
 <div class="d-article">
-<div class="d-contents d-contents-float">
-<nav class="l-text toc figcaption" id="TOC">
-<h3>Contents</h3>
-<ul>
-<li><a href="#time-to-blow-rsquared-up">Time to blow RSquared up</a></li>
-</ul>
-</nav>
-</div>
 <h1 id="time-to-blow-rsquared-up">Time to blow RSquared up</h1>
 <p><a href="https://en.wikipedia.org/wiki/Coefficient_of_determination">R-squared</a> is a statistic that often accompanies regression output. It ranges in value from 0 to 1 and is usually interpreted as summarizing the percent of variation in the response that the regression model explains. So an R-squared of 0.65 might mean that the model explains about 65% of the variation in our dependent variable. Given this logic, we prefer our regression models have a high R-squared.</p>
 <p>In R, we typically get R-squared by calling the summary function on a model object. Here’s a quick example using simulated data:</p>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Show code
-</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># independent variable</span>
 <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>20</span> 
@@ -2453,7 +2441,6 @@ Show code
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>mod</span><span class='op'>)</span><span class='op'>$</span><span class='va'>r.squared</span>          
 </code></pre>
 </div>
-</details>
 <pre><code>[1] 0.6026682</code></pre>
 </div>
 <p>One way to express R-squared is as the sum of squared fitted-value deviations divided by the sum of squared original-value deviations:</p>
@@ -2462,10 +2449,6 @@ R^{2} =  \frac{\sum (\hat{y} – \bar{\hat{y}})^{2}}{\sum (y – \bar{y})^{2}}
 \]</span></p>
 <p>We can calculate it directly using our model object like so:</p>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Show code
-</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># extract fitted (or predicted) values from model</span>
 <span class='va'>f</span> <span class='op'>&lt;-</span> <span class='va'>mod</span><span class='op'>$</span><span class='va'>fitted.values</span>
@@ -2477,17 +2460,12 @@ Show code
 <span class='va'>mss</span><span class='op'>/</span><span class='va'>tss</span>                      
 </code></pre>
 </div>
-</details>
 <pre><code>[1] 0.6026682</code></pre>
 </div>
 <p>1. <em>R-squared does not measure goodness of fit. It can be arbitrarily low when the model is completely correct.</em> By making<span class="math inline">\(σ^2\)</span> large, we drive R-squared towards 0, even when every assumption of the simple linear regression model is correct in every particular.</p>
 <p>What is <span class="math inline">\(σ^2\)</span>? When we perform linear regression, we assume our model almost predicts our dependent variable. The difference between “almost” and “exact” is assumed to be a draw from a Normal distribution with mean 0 and some variance we call <span class="math inline">\(σ^2\)</span>.</p>
 <p>This statement is easy enough to demonstrate. The way we do it here is to create a function that (1) generates data meeting the assumptions of simple linear regression (independent observations, normally distributed errors with constant variance), (2) fits a simple linear model to the data, and (3) reports the R-squared. Notice the only parameter for sake of simplicity is <code>sigma</code>. We then “apply” this function to a series of increasing <span class="math inline">\(σ\)</span> values and plot the results.</p>
 <div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-Show code
-</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>r2.0</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>sig</span><span class='op'>)</span><span class='op'>{</span>
   <span class='co'># our predictor</span>
@@ -2503,7 +2481,6 @@ Show code
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>rout</span> <span class='op'>~</span> <span class='va'>sigmas</span>, type<span class='op'>=</span><span class='st'>"b"</span><span class='op'>)</span>
 </code></pre>
 </div>
-</details>
 <p><img src="Rsquared_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
 </div>
 <p>R-squared tanks hard with increasing sigma, even though the model is <em>completely correct</em> in every respect.</p>

@@ -3,10 +3,7 @@ title: "SVM and Bagging & RF"
 description: |
   Support Vector Machine, Bagging and Random Forest Exercise 
 output:
-  distill::distill_article:
-    toc: true
-    toc_depth: 2
-    code_folding: true
+  distill::distill_article
 ---
 
 # Exercise 1 (Bootstrap)

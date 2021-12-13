@@ -1,9 +1,6 @@
 ---
-<!-- ![an image caption Source: Ultimate Funny Dog Videos Compilation 2013.](images/Sangbeom.jpg) -->
-
 title: "Sangbeom Seo"
-<!-- image: "MWebsite/images/Sangbeom.JPG" -->
-
+image: "Sangbeom.jpg"
 links:
   - label: LinkedIn
     url: "https://www.linkedin.com/in/sangbeom-seo-682ba0224/"
